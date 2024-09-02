@@ -5,13 +5,27 @@ NULLABLE = {"null": True, "blank": True}
 
 
 class User(AbstractUser):
+    """
+    Модель сотрудник (пользователь)
+
+    Поля:
+        - first_name: Имя
+        - last_name: Фамилия
+        - patronymic: Отчество
+        - position: Должность
+        - birthday: Дата рождения
+        - email: email
+        - avatar: Аватар
+        - tg_chat_id: Телеграм chat-id
+
+    """
+
+    username = None
     first_name = models.CharField(verbose_name="Имя", max_length=50)
     last_name = models.CharField(verbose_name="Фамилия", max_length=50)
     patronymic = models.CharField(verbose_name="Отчество", max_length=50, **NULLABLE)
+    position = models.CharField(verbose_name="Должность", max_length=50)
     birthday = models.DateField(verbose_name="Дата рождения", **NULLABLE)
-
-
-    username = None
     email = models.EmailField(unique=True, verbose_name="email")
     avatar = models.ImageField(
         upload_to="users/avatars", verbose_name="Аватар", **NULLABLE
