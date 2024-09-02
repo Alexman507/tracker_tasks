@@ -5,3 +5,5 @@ django-filter~=24.3
 python-dotenv~=1.0.1
 psycopg2-binary~=2.9.9
 drf-yasg~=1.21.7
+django_pghistory~=3.3.0
+django_pgtrigger~=4.12

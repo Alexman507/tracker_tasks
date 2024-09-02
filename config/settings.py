@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "corsheaders",
     'tasker',
     'users',
+    'pghistory',
+    'pgtrigger',
 ]
 
 MIDDLEWARE = [

@@ -1,10 +1,15 @@
 from django.db import models
-
 from users.models import User
+
+import pghistory
 
 NULLABLE = {"null": True, "blank": True}
 
 
+@pghistory.track(
+    pghistory.Event('user.create'),
+    fields=['username']
+)
 class Task(models.Model):
     """
     Модель Задача
@@ -39,4 +44,3 @@ class Task(models.Model):
     notes = models.TextField(**NULLABLE)
     version = models.AutoField(default=1)
     updated_at = models.DateTimeField(auto_now=True)
-
