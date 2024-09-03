@@ -56,7 +56,6 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'pghistory.middleware.HistoryMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -98,9 +97,13 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "postgres",  # Название БД
+        "USER": os.getenv("POSTGRES_USER"),  # Пользователь для подключения
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),  # Пароль для этого пользователя
+        "HOST": os.getenv("POSTGRES_HOST"),  # Адрес, на котором развернут сервер БД
+        "PORT": os.getenv("POSTGRES_PORT"),  # Порт, на котором работает сервер БД
     }
 }
 

@@ -7,8 +7,6 @@ NULLABLE = {"null": True, "blank": True}
 
 
 @pghistory.track()
-
-
 class Task(models.Model):
     """
     Модель Задача
@@ -30,7 +28,7 @@ class Task(models.Model):
     parent_task = models.ForeignKey(
         "self", on_delete=models.SET_NULL, **NULLABLE
     )
-    executor = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE)
+    executor = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, related_name="executors")
     deadline = models.DateTimeField()
     status = models.CharField(max_length=100)
     responsible_manager = models.ForeignKey(
@@ -38,8 +36,8 @@ class Task(models.Model):
         on_delete=models.SET_NULL,
         **NULLABLE,
         verbose_name="Ответственный за выполнение",
+        related_name="responsibles"
     )
     priority = models.PositiveSmallIntegerField(default=3)
     notes = models.TextField(**NULLABLE)
-    version = models.AutoField(default=1)
     updated_at = models.DateTimeField(auto_now=True)

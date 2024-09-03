@@ -11,5 +11,5 @@ router = SimpleRouter()
 router.register("", TaskerViewSet, basename="habits")
 
 urlpatterns = [
-    path("public/", PublicHabitListAPIView.as_view(), name="public"),
+    path("public/", PublicTaskerListAPIView.as_view(), name="public"),
 ] + router.urls
