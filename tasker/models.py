@@ -6,10 +6,9 @@ import pghistory
 NULLABLE = {"null": True, "blank": True}
 
 
-@pghistory.track(
-    pghistory.Event('user.create'),
-    fields=['username']
-)
+@pghistory.track()
+
+
 class Task(models.Model):
     """
     Модель Задача
