@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import EmailValidator
 from django.db import models
 
 NULLABLE = {"null": True, "blank": True}
@@ -26,7 +27,10 @@ class User(AbstractUser):
     patronymic = models.CharField(verbose_name="Отчество", max_length=50, **NULLABLE)
     position = models.CharField(verbose_name="Должность", max_length=50)
     birthday = models.DateField(verbose_name="Дата рождения", **NULLABLE)
-    email = models.EmailField(unique=True, verbose_name="email")
+    email = models.EmailField(unique=True, verbose_name="email",
+                              validators=[
+                                  EmailValidator(message='При регистрации допускается только домен osnova-3d',
+                                                 allowlist='osnova-3d.ru')])
     avatar = models.ImageField(
         upload_to="users/avatars", verbose_name="Аватар", **NULLABLE
     )

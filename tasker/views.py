@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets, generics
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticated
@@ -10,14 +12,24 @@ from tasker.serializers import TaskSerializer
 
 
 # TaskerViewSet, PublicTaskerListAPIView
-
+@method_decorator(
+    name="list", decorator=swagger_auto_schema(operation_description="Список задач")
+)
 class TaskerViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = TaskPaginator
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ("action",)
-    ordering_fields = ("time",)
+    search_fields = ("executor",)
+    ordering_fields = ("deadline", "updated_at",)
+
+    def get_queryset(self):
+        return Task.objects.filter(executor=self.request.user.pk).order_by("id")
+
+    def perform_create(self, serializer):
+        new_task = serializer.save()
+        new_task.user = self.request.user
+        new_task.save()
 
 
 class PublicTaskerListAPIView(generics.ListAPIView):

@@ -15,9 +15,11 @@ class TaskSerializer(ModelSerializer):
         model = Task
         fields = "__all__"
         # validators = [
-        #     RewardValidator(field1="reward", field2="related_habit"),
-        #     RelatedHabitValidator(field="related_habit"),
-        #     DurationTimeValidator(field="duration"),
-        #     PleasantHabitValidator(field="is_pleasant"),
-        #     RegularityValidator(field1="frequency_number", field2="frequency_unit"),
+        #
+        #
+        # #     RewardValidator(field1="reward", field2="related_habit"),
+        # #     RelatedHabitValidator(field="related_habit"),
+        # #     DurationTimeValidator(field="duration"),
+        # #     PleasantHabitValidator(field="is_pleasant"),
+        # #     RegularityValidator(field1="frequency_number", field2="frequency_unit"),
         # ]

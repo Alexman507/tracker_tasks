@@ -8,7 +8,7 @@ from tasker.views import TaskerViewSet, PublicTaskerListAPIView
 app_name = TaskerConfig.name
 
 router = SimpleRouter()
-router.register("", TaskerViewSet, basename="habits")
+router.register("", TaskerViewSet, basename="tasker")
 
 urlpatterns = [
     path("public/", PublicTaskerListAPIView.as_view(), name="public"),

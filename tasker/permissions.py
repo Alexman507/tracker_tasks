@@ -5,4 +5,4 @@ class IsOwner(BasePermission):
     """Проверяет, является ли пользователь создателем задачи."""
 
     def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+        return obj.executor == request.user

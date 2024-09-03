@@ -10,3 +10,4 @@ djangorestframework-simplejwt~=5.3.1
 django-cors-headers~=4.4.0
 django_pghistory~=3.4.0
 django_pgtrigger~=4.12
+coverage~=7.6.1
