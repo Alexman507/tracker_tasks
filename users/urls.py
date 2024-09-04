@@ -7,21 +7,23 @@ from rest_framework_simplejwt.views import (
 )
 
 from users.apps import UsersConfig
-from users.views import UserViewSet
+from users.views import UserViewSet, BusyUserListAPIView
 
 app_name = UsersConfig.name
 router = SimpleRouter()
 router.register("", UserViewSet, basename="users")
 
 urlpatterns = [
-    path(
-        "login/",
-        TokenObtainPairView.as_view(permission_classes=(AllowAny,)),
-        name="login",
-    ),
-    path(
-        "token/refresh/",
-        TokenRefreshView.as_view(permission_classes=(AllowAny,)),
-        name="token_refresh",
-    ),
-] + router.urls
+                  path(
+                      "login/",
+                      TokenObtainPairView.as_view(permission_classes=(AllowAny,)),
+                      name="login",
+                  ),
+                  path(
+                      "token/refresh/",
+                      TokenRefreshView.as_view(permission_classes=(AllowAny,)),
+                      name="token_refresh",
+                  ),
+                  path("busy/", BusyUserListAPIView.as_view(), name="busy_executors",),
+                  path()
+              ] + router.urls

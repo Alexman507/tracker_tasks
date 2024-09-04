@@ -55,7 +55,10 @@ class User(AbstractUser):
         """
         Возвращает Фамилию, Имя и Отчество с пробелом между ними.
         """
-        full_fio = "%s %s %s" % (self.last_name, self.first_name, self.patronymic)
+        if self.patronymic:
+            full_fio = "%s %s %s" % (self.last_name, self.first_name, self.patronymic)
+        else:
+            full_fio = "%s %s" % (self.last_name, self.first_name)
         return full_fio.strip()
 
     def __get_i(self):
@@ -65,8 +68,10 @@ class User(AbstractUser):
 
     def __get_p(self):
         """Возвращает первую букву отчества."""
-        short_patronymic = ("%s" % self.patronymic)[0]
-        return short_patronymic.strip()
+        if self.patronymic:
+            short_patronymic = ("%s" % self.patronymic)[0]
+            return short_patronymic.strip()
+        return None
 
     def get_short_fio(self):
         """Возвращает фамилию и инициалы сотрудника."""

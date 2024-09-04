@@ -1,6 +1,5 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from rest_framework.validators import UniqueTogetherValidator
-
 from tasker.models import Task
 from tasker.validators import DeadlineDateValidator
 
@@ -15,13 +14,17 @@ from tasker.validators import DeadlineDateValidator
 
 
 class TaskSerializer(ModelSerializer):
+
     class Meta:
         model = Task
         fields = "__all__"
         validators = [
             DeadlineDateValidator(field="deadline"),
 
-            ]
+        ]
+
+    def create(self, validated_data):
+        return Task.objects.create(**validated_data)
         #
         #
         # #     RewardValidator(field1="reward", field2="related_habit"),
