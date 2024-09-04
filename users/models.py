@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import EmailValidator
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 NULLABLE = {"null": True, "blank": True}
 
@@ -31,6 +32,7 @@ class User(AbstractUser):
                               validators=[
                                   EmailValidator(message='При регистрации допускается только домен osnova-3d',
                                                  allowlist='osnova-3d.ru')])
+    phone = PhoneNumberField(**NULLABLE)
     avatar = models.ImageField(
         upload_to="users/avatars", verbose_name="Аватар", **NULLABLE
     )

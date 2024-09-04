@@ -36,14 +36,14 @@ from rest_framework.exceptions import ValidationError
 #                 )
 #
 #
-class DurationTimeValidator:
+class DeadlineDateValidator:
     def __init__(self, field):
         self.field = field
 
     def __call__(self, value):
         tmp_val = dict(value).get(self.field)
         print(tmp_val)
-        if tmp_val is not None and tmp_val > datetime.now().strftime:
+        if tmp_val is not None and tmp_val < datetime.now():
             raise ValidationError("Дедлайн не может быть задним числом")
 #
 #

@@ -11,3 +11,5 @@ django-cors-headers~=4.4.0
 django_pghistory~=3.4.0
 django_pgtrigger~=4.12
 coverage~=7.6.1
+django-phonenumber-field~=8.0.0
+phonenumberslite~=8.13.44

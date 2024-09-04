@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users',
     'pghistory',
     'pgtrigger',
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [
