@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class BusyUserSerializer(serializers.ModelSerializer):
-    short_fio = serializers.CharField(source='short_fio',)
+    short_fio = serializers.CharField(source='get_short_fio')
     task = TaskSerializer(read_only=True)
     executor_task_count = serializers.SerializerMethodField()
 

@@ -36,3 +36,21 @@ class PublicTaskerListAPIView(generics.ListAPIView):
     serializer_class = TaskSerializer
     queryset = Task.objects.filter(priority=1)
     pagination_class = TaskPaginator
+
+
+class FreeImportantTaskerListAPIView(generics.ListAPIView):
+    serializer_class = TaskSerializer
+    queryset = Task.objects.filter(parent_task=True, executor=None)
+
+
+class FreeExecutorsListAPIView(generics.ListAPIView):
+    serializer_class = FreeExecutorsListSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ("executor",)
+    ordering_fields = ("deadline", "updated_at",)
+
+
+class ImportantTasksListAPIView(generics.ListAPIView):
+    serializer_class = ImportantTaskListSerializer
+    queryset = Task.objects.filter(parent_task=True)
+
