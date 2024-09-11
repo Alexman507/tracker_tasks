@@ -25,5 +25,5 @@ urlpatterns = [
                       name="token_refresh",
                   ),
                   path("busy/", BusyUserListAPIView.as_view(), name="busy_executors",),
-                  path()
+
               ] + router.urls

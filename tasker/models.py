@@ -43,13 +43,13 @@ class Task(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    tag = models.CharField(max_length=20, choices=TAG_CHOICES)
+    tag = models.CharField(max_length=20, choices=TAG_CHOICES, **NULLABLE)
     parent_task = models.ForeignKey(
         "self", on_delete=models.CASCADE, **NULLABLE
     )
     executor = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, related_name="executors")
     deadline = models.DateTimeField()
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     responsible_manager = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,

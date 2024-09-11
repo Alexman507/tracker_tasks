@@ -4,8 +4,8 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from users.models import User
-from users.serializers import UserSerializer, BusyUserSerializer
-
+from users.serializers import UserSerializer
+from tasker.serializers import BusyUserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer

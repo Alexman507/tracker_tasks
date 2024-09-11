@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from tasker.models import Task
 from tasker.paginations import TaskPaginator
 from tasker.permissions import IsOwner
-from tasker.serializers import TaskSerializer
+from tasker.serializers import TaskSerializer, FreeExecutorsListSerializer, ImportantTaskListSerializer
 
 
 # TaskerViewSet, PublicTaskerListAPIView
