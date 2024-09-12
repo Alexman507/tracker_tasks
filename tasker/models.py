@@ -61,4 +61,3 @@ class Task(models.Model):
     is_active = models.BooleanField(default=False)
     notes = models.TextField(**NULLABLE)
     updated_at = models.DateTimeField(auto_now=True)
-    is_important = models.BooleanField(default=False, )

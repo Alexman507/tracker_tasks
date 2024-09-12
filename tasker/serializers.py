@@ -21,11 +21,11 @@ class TaskSerializer(ModelSerializer):
 class BusyUserSerializer(serializers.ModelSerializer):
     short_fio = serializers.CharField(source='get_short_fio')
     executor_task_count = serializers.SerializerMethodField()
-    tasks = TaskSerializer(read_only=True)
+    tasks = TaskSerializer(read_only=True, many=True, source="executor.task_set")
 
     class Meta:
         model = User
-        fields = ["short_fio", "tasks"]
+        fields = ["short_fio", "tasks", "executor_task_count"]
         permission_classes = [IsAdminUser]
 
     def get_executor_task_count(self, obj):
@@ -46,7 +46,7 @@ class FreeExecutorsListSerializer(ModelSerializer):
         model = Task
         fields = ["free_executors"]
 
-    def count_tasks(self, obj):
+    def get_count_tasks(self, obj):
         count_ = 0
         if obj.parent_task:
             count_ += len(obj.parent_task)
@@ -54,12 +54,11 @@ class FreeExecutorsListSerializer(ModelSerializer):
 
 
 class ImportantTaskListSerializer(ModelSerializer):
-    important_tasks = Task.objects.filter(parent_task__isnull=False)
+    important_tasks = TaskSerializer(read_only=True, many=True, source="parent_task", allow_null=False)
     users = UserSerializer(read_only=True)
+    full_fio = serializers.CharField(source='get_full_fio')
+
 
     class Meta:
         model = Task
         fields = ["important_tasks", "deadline", "full_fio"]
-
-# test commit
-# test commit from git hub
