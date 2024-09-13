@@ -19,7 +19,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class BusyUserListAPIView(ListAPIView):
+    """Запрашивает из БД список сотрудников и их задачи, отсортированный по количеству активных задач."""
     queryset = User.objects.all()
     serializer_class = BusyUserSerializer
-    filter_backends = [OrderingFilter]
-    ordering_fields = ["executor_task_count"]
+    # filter_backends = [OrderingFilter]
+    # ordering_fields = ["executor_task_count"]

@@ -71,9 +71,12 @@ class User(AbstractUser):
         if self.patronymic:
             short_patronymic = ("%s" % self.patronymic)[0]
             return short_patronymic.strip()
-        return None
+        return ""
 
     def get_short_fio(self):
         """Возвращает фамилию и инициалы сотрудника."""
-        full_fio = "%s %s.%s." % (self.last_name, self.__get_i(), self.__get_p())
-        return full_fio.strip()
+        if not self.patronymic:
+            short_fio = "%s %s." % (self.last_name, self.__get_i())
+        else:
+            short_fio = "%s %s.%s." % (self.last_name, self.__get_i(), self.__get_p())
+        return short_fio.strip()

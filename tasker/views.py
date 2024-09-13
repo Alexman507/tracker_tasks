@@ -16,6 +16,7 @@ from tasker.serializers import TaskSerializer, FreeExecutorsListSerializer, Impo
     name="list", decorator=swagger_auto_schema(operation_description="Список задач")
 )
 class TaskerViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = TaskPaginator
@@ -39,11 +40,19 @@ class PublicTaskerListAPIView(generics.ListAPIView):
 
 
 class FreeImportantTaskerListAPIView(generics.ListAPIView):
+    """Запрашивает из БД задачи, которые не взяты в работу,
+    но от которых зависят другие задачи, взятые в работу."""
     serializer_class = TaskSerializer
     queryset = Task.objects.filter(parent_task=True, executor=None)
 
 
 class FreeExecutorsListAPIView(generics.ListAPIView):
+    """
+    Реализует поиск по сотрудникам, которые могут взять такие задачи
+    (наименее загруженный сотрудник или сотрудник, выполняющий родительскую задачу,
+    если ему назначено максимум на 2 задачи больше, чем у наименее загруженного сотрудника).
+    """
+    queryset = Task.objects.filter(parent_task=True)
     serializer_class = FreeExecutorsListSerializer
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ("executor",)
@@ -51,6 +60,6 @@ class FreeExecutorsListAPIView(generics.ListAPIView):
 
 
 class ImportantTasksListAPIView(generics.ListAPIView):
+    """Возвращает список объектов в формате: `{Важная задача, Срок, [ФИО сотрудника]}`"""
     serializer_class = ImportantTaskListSerializer
     queryset = Task.objects.filter(parent_task=True)
-

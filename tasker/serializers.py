@@ -1,3 +1,5 @@
+from dataclasses import field
+
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 from django.db.models import Count, Min
@@ -19,17 +21,23 @@ class TaskSerializer(ModelSerializer):
 
 
 class BusyUserSerializer(serializers.ModelSerializer):
+    """Запрашивает из БД список сотрудников и их задачи, отсортированный по количеству активных задач"""
     short_fio = serializers.CharField(source='get_short_fio')
+    tasks = TaskSerializer(read_only=True, many=True, source='executors')
     executor_task_count = serializers.SerializerMethodField()
-    tasks = TaskSerializer(read_only=True, many=True, source="executor.task_set")
+
+    def get_executor_task_count(self, obj):
+        count_ = 0
+        if obj.parent_task:
+            count_ += len(obj.parent_task)
+        return count_
 
     class Meta:
         model = User
         fields = ["short_fio", "tasks", "executor_task_count"]
         permission_classes = [IsAdminUser]
 
-    def get_executor_task_count(self, obj):
-        return obj.task_set.count()
+
 
 
 class FreeExecutorsListSerializer(ModelSerializer):
@@ -45,6 +53,7 @@ class FreeExecutorsListSerializer(ModelSerializer):
     class Meta:
         model = Task
         fields = ["free_executors"]
+        queryset = Task.objects.all()
 
     def get_count_tasks(self, obj):
         count_ = 0
