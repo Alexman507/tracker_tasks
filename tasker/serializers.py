@@ -63,11 +63,17 @@ class FreeExecutorsListSerializer(ModelSerializer):
 
 
 class ImportantTaskListSerializer(ModelSerializer):
-    important_tasks = TaskSerializer(read_only=True, many=True, source="parent_task", allow_null=False)
-    users = UserSerializer(read_only=True)
-    full_fio = serializers.CharField(source='get_full_fio')
+    executor = PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        read_only=False
+    )
+    # full_fio = serializers.CharField(source='get_full_fio', related_name='executor')
 
 
     class Meta:
         model = Task
-        fields = ["important_tasks", "deadline", "full_fio"]
+        fields = ["name", "deadline", "executor"]
+
+    def get_important_tasks(self, obj):
+        if obj:
+            return TaskSerializer(obj, many=True)

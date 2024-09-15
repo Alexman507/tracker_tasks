@@ -1,3 +1,5 @@
+from datetime import tzinfo
+
 from django.db import models
 from users.models import User
 
@@ -48,7 +50,7 @@ class Task(models.Model):
         "self", on_delete=models.CASCADE, **NULLABLE
     )
     executor = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, related_name="executors")
-    deadline = models.DateTimeField()
+    deadline = models.DateTimeField(**NULLABLE)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     responsible_manager = models.ForeignKey(
         User,

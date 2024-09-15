@@ -24,19 +24,20 @@ class TaskerViewSet(viewsets.ModelViewSet):
     search_fields = ("executor",)
     ordering_fields = ("deadline", "updated_at",)
 
-    def get_queryset(self):
-        return Task.objects.filter(executor=self.request.user.pk).order_by("id")
-
     def perform_create(self, serializer):
         new_task = serializer.save()
         new_task.user = self.request.user
         new_task.save()
 
 
+
 class PublicTaskerListAPIView(generics.ListAPIView):
     serializer_class = TaskSerializer
     queryset = Task.objects.filter(priority=1)
     pagination_class = TaskPaginator
+
+    def get_queryset(self):
+        return Task.objects.filter(executor=self.request.user.pk).order_by("id")
 
 
 class FreeImportantTaskerListAPIView(generics.ListAPIView):
@@ -62,4 +63,4 @@ class FreeExecutorsListAPIView(generics.ListAPIView):
 class ImportantTasksListAPIView(generics.ListAPIView):
     """Возвращает список объектов в формате: `{Важная задача, Срок, [ФИО сотрудника]}`"""
     serializer_class = ImportantTaskListSerializer
-    queryset = Task.objects.filter(parent_task=True)
+    queryset = Task.objects.filter(parent_task__isnull=False)
