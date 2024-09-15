@@ -21,7 +21,7 @@ class TaskerViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = TaskPaginator
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ("executor",)
+    search_fields = ("executors",)
     ordering_fields = ("deadline", "updated_at",)
 
     def perform_create(self, serializer):
@@ -37,14 +37,14 @@ class PublicTaskerListAPIView(generics.ListAPIView):
     pagination_class = TaskPaginator
 
     def get_queryset(self):
-        return Task.objects.filter(executor=self.request.user.pk).order_by("id")
+        return Task.objects.filter(executors=self.request.user.pk).order_by("id")
 
 
 class FreeImportantTaskerListAPIView(generics.ListAPIView):
     """Запрашивает из БД задачи, которые не взяты в работу,
     но от которых зависят другие задачи, взятые в работу."""
     serializer_class = TaskSerializer
-    queryset = Task.objects.filter(parent_task=True, executor=None)
+    queryset = Task.objects.filter(parent_task__isnull=False, executors=None)
 
 
 class FreeExecutorsListAPIView(generics.ListAPIView):
@@ -53,7 +53,7 @@ class FreeExecutorsListAPIView(generics.ListAPIView):
     (наименее загруженный сотрудник или сотрудник, выполняющий родительскую задачу,
     если ему назначено максимум на 2 задачи больше, чем у наименее загруженного сотрудника).
     """
-    queryset = Task.objects.filter(parent_task=True)
+    queryset = Task.objects.filter(parent_task__isnull=False)
     serializer_class = FreeExecutorsListSerializer
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ("executor",)
@@ -64,3 +64,4 @@ class ImportantTasksListAPIView(generics.ListAPIView):
     """Возвращает список объектов в формате: `{Важная задача, Срок, [ФИО сотрудника]}`"""
     serializer_class = ImportantTaskListSerializer
     queryset = Task.objects.filter(parent_task__isnull=False)
+

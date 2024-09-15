@@ -1,4 +1,5 @@
 from datetime import tzinfo
+from tokenize import blank_re
 
 from django.db import models
 from users.models import User
@@ -49,7 +50,7 @@ class Task(models.Model):
     parent_task = models.ForeignKey(
         "self", on_delete=models.CASCADE, **NULLABLE
     )
-    executor = models.ForeignKey(User, on_delete=models.SET_NULL, **NULLABLE, related_name="executors")
+    executors = models.ManyToManyField(to="users.User", verbose_name="исполнители", related_name="executors", blank=True)
     deadline = models.DateTimeField(**NULLABLE)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     responsible_manager = models.ForeignKey(

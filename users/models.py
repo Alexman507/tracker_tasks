@@ -3,6 +3,8 @@ from django.core.validators import EmailValidator
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+import tasker.models
+
 NULLABLE = {"null": True, "blank": True}
 
 
@@ -40,6 +42,7 @@ class User(AbstractUser):
     tg_chat_id = models.CharField(
         max_length=50, verbose_name="Телеграм chat-id", **NULLABLE
     )
+    tasks = models.ManyToManyField(to="tasker.Task", related_name="tasks", blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
