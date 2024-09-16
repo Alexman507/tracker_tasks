@@ -50,7 +50,7 @@ class Task(models.Model):
     parent_task = models.ForeignKey(
         "self", on_delete=models.CASCADE, **NULLABLE
     )
-    executors = models.ManyToManyField(to="users.User", verbose_name="исполнители", related_name="executors", blank=True)
+    executors = models.ManyToManyField(to="users.User", verbose_name="исполнители", related_name="my_tasks", blank=True)
     deadline = models.DateTimeField(**NULLABLE)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     responsible_manager = models.ForeignKey(

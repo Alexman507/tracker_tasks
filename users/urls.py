@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from tasker.views import FreeExecutorsAPIView
 from users.apps import UsersConfig
 from users.views import UserViewSet, BusyUserListAPIView
 
@@ -25,5 +26,6 @@ urlpatterns = [
                       name="token_refresh",
                   ),
                   path("busy/", BusyUserListAPIView.as_view(), name="busy_executors",),
+                  path("free/", FreeExecutorsAPIView.as_view(), name="free_executors",),
 
               ] + router.urls
