@@ -58,11 +58,11 @@ class FreeExecutorsAPIView(APIView):
     если ему назначено максимум на 2 задачи больше, чем у наименее загруженного сотрудника).
     """
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, pk):
         user_min_task = User.objects.all().annotate(task_count=Count('tasks')).order_by('task_count').first()
-        task_parent = Task.objects.get(pk="pk").parent_task
+        task_parent = Task.objects.get(pk=pk).parent_task
         user_task_parent = User.objects.filter(tasks__id=task_parent.id).first()
-
+        print(user_min_task)
         count_user_task_parent = len(list(user_task_parent.tasks.all()))
         count_user_min_task = len(list(user_min_task.tasks.all()))
         if count_user_task_parent - count_user_min_task <= 2:

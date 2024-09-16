@@ -21,7 +21,7 @@ class FreeExecutorsListSerializer(ModelSerializer):
     class Meta:
         model = User
         exclude = ["password", "is_superuser", "is_staff"]
-        queryset = User.objects.all()
+
 
 
 class ImportantTaskListSerializer(ModelSerializer):
