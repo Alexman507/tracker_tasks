@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'tasker',
     'users',
     'pghistory',
+    'pghistory.admin',
     'pgtrigger',
     "phonenumber_field",
 ]

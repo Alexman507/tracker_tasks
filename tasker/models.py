@@ -1,10 +1,7 @@
-from datetime import tzinfo
-from tokenize import blank_re
-
-from django.db import models
-from users.models import User
-
 import pghistory
+from django.db import models
+
+from users.models import User
 
 NULLABLE = {"null": True, "blank": True}
 
@@ -26,7 +23,6 @@ class Task(models.Model):
         - is_active: Boolean (default=false)
         - notes: Примечание
         - updated_at: Дата обновления
-        - is_important: Boolean (if parent_task)
     """
     TAG_CHOICES = [
         ("purchase", "Закупка"),
