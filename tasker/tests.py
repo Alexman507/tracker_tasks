@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-# Create your tests here.
+# https://github.com/schlunsen/django-rest-framework-simplejwt/tree/master/tests

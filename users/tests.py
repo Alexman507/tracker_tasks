@@ -11,15 +11,16 @@ class TaskTestCase(APITestCase):
         self.user = User.objects.create(email="test@osnova-3d.ru")
         self.task = Task.objects.create(
             name="Задоджить",
+            tag="purchase",
             deadline="2024-09-03T15:00:00Z",
-            status="Продалося",
+            status="open",
             responsible_manager=self.user,
             priority=1,
             notes="а каво писать",
             updated_at="2024-09-03T12:31:00.992Z",
-            executor=self.user,
         )
         self.client.force_authenticate(user=self.user)
+
 
     def test_task_retrieve(self):
         url = reverse("tasker:tasker-detail", args=(self.task.pk,))
@@ -37,8 +38,7 @@ class TaskTestCase(APITestCase):
             "responsible_manager": 1,
             "priority": 1,
             "notes": "а каво писать",
-            "updated_at": "2024-09-03T12:31:00.992Z",
-            "executor": 1,
+            "updated_at": "2024-09-03T12:31:00.992Z"
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -68,3 +68,5 @@ class TaskTestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Task.objects.all().count(), 0)
+
+
