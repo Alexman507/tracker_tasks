@@ -26,6 +26,6 @@ urlpatterns = [
                       name="token_refresh",
                   ),
                   path("busy/", BusyUserListAPIView.as_view(), name="busy_executors",),
-                  path("free/", FreeExecutorsAPIView.as_view(), name="free_executors",),
+                  path("free/<int:pk>/", FreeExecutorsAPIView.as_view(), name="free_executors",),
 
               ] + router.urls
