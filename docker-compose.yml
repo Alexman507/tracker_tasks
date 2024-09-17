@@ -1,0 +1,75 @@
+version: "3.11"
+
+services:
+  django:
+    # Сборка образа для сервиса django из текущей директории
+    build: .
+    tty: true
+    # Задание имени контейнера для сервиса django
+    container_name: django
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
+    command: sh -c 'python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
+    restart: on-failure
+    volumes:
+      - .:/app
+    # Открытие порта на хостовой машине и перенаправление на порт в контейнере
+    ports:
+      - "8000:8000"
+    # Зависимость от другого сервиса
+    depends_on:
+      pgdb:
+        condition: service_healthy
+
+  pgdb:
+    # Использование готового образа postgres
+    image: postgres:16
+    # Задание переменных окружения для контейнера с postgres
+    restart: on-failure
+    env_file:
+      - .env
+     # Задание имени контейнера для сервиса pgdb
+    container_name: pgdb
+     # Связывание тома с директорией в контейнере для сохранения данных postgres
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+    healthcheck:
+      test: [ "CMD-SHELL","-c","pg_isready -U $POSTGRES_USER" ]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+#  redis:
+#    image: redis:latest
+#    restart: on-failure
+#    expose:
+#      - '6379'
+
+
+#  celery-worker:
+#    build: .
+#    tty: true
+#    restart: on-failure
+#    command: celery -A config worker -l INFO
+#    volumes:
+#      - .:/app
+#    depends_on:
+#      - redis
+#      - django
+#      - pgdb
+#    env_file:
+#      - .env
+
+#  celery-beat:
+#    build: .
+#    tty: true
+#    volumes:
+#      - .:/app
+#    restart: on-failure
+#    depends_on:
+#      - redis
+#      - pgdb
+#    command: celery -A config beat -l INFO
+#    env_file:
+#      - .env
+volumes:
+  pgdbdata:
