@@ -1,12 +1,9 @@
 from django.db.models import Count
-from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets, generics
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from tasker.models import Task
 from tasker.paginations import TaskPaginator
@@ -20,7 +17,7 @@ from users.models import User
     name="list", decorator=swagger_auto_schema(operation_description="Список задач")
 )
 class TaskerViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Task.objects.all().order_by("updated_at")
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = TaskPaginator

@@ -162,6 +162,13 @@ AUTH_USER_MODEL = "users.User"
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=300),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    'SIGNING_KEY': SECRET_KEY,
+    "ALGORITHM": "HS256",
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+
 }
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
