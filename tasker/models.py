@@ -60,3 +60,6 @@ class Task(models.Model):
     is_active = models.BooleanField(default=False)
     notes = models.TextField(**NULLABLE)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name

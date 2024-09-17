@@ -51,16 +51,17 @@ class FreeImportantTaskerListAPIView(generics.ListAPIView):
     queryset = Task.objects.filter(parent_task__isnull=False, executors=None)
 
 
-class FreeExecutorsAPIView(APIView):
+class FreeExecutorsAPIView(generics.ListAPIView):
     """
     Реализует поиск по сотрудникам, которые могут взять такие задачи
     (наименее загруженный сотрудник или сотрудник, выполняющий родительскую задачу,
     если ему назначено максимум на 2 задачи больше, чем у наименее загруженного сотрудника).
     """
+    serializer_class = FreeExecutorsListSerializer
 
-    def get(self, request, pk):
+    def get_queryset(self):
         user_min_task = User.objects.all().annotate(task_count=Count('tasks')).order_by('task_count').first()
-        task_parent = Task.objects.get(pk=pk).parent_task
+        task_parent = Task.objects.filter(parent_task__isnull=False, executors=None).first()
         user_task_parent = User.objects.filter(tasks__id=task_parent.id).first()
         count_user_task_parent = len(list(user_task_parent.tasks.all()))
         count_user_min_task = len(list(user_min_task.tasks.all()))
@@ -69,9 +70,7 @@ class FreeExecutorsAPIView(APIView):
         else:
             queryset = User.objects.filter(pk=user_min_task.pk)
 
-        serializer = FreeExecutorsListSerializer(queryset, many=True)
-
-        return Response(serializer.data)
+        return queryset
 
 
 class ImportantTasksListAPIView(generics.ListAPIView):
