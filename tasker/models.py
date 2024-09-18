@@ -6,7 +6,9 @@ from users.models import User
 NULLABLE = {"null": True, "blank": True}
 
 
-@pghistory.track()
+@pghistory.track(
+    exclude=["executors", "responsible_manager"]
+)
 class Task(models.Model):
     """
     Модель Задача
