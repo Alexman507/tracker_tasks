@@ -8,7 +8,7 @@ services:
     # Задание имени контейнера для сервиса django
     container_name: django
     # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
-    command: sh -c 'python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
+    command: sh -c 'python manage.py migrate && python manage.py csu && python manage.py runserver 0.0.0.0:8000'
     restart: on-failure
     volumes:
       - .:/app
@@ -17,8 +17,8 @@ services:
       - "8000:8000"
     # Зависимость от другого сервиса
     depends_on:
-      pgdb:
-        condition: service_healthy
+      - pgdb
+#        condition: service_healthy
 
   pgdb:
     # Использование готового образа postgres
@@ -32,13 +32,13 @@ services:
      # Связывание тома с директорией в контейнере для сохранения данных postgres
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
-      - ./fixtures/drf.sql:/docker-entrypoint-initdb.d/drf.sql
+      - ./fixtures:/docker-entrypoint-initdb.d
+#    command:
     healthcheck:
-      test: [ "CMD-SHELL","-c","pg_isready -U $POSTGRES_USER" ]
+      test: [ "CMD-SHELL","-c","pg_isready -U $POSTGRES_USER"]
       interval: 10s
       retries: 5
       timeout: 5s
-    command: bash -c "psql -U postgres -d postgres < /backup/drf.sql"
 
 #  redis:
 #    image: redis:latest
