@@ -1,5 +1,3 @@
-from datetime import timedelta
-from rest_framework_simplejwt.tokens import Token
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -40,7 +38,7 @@ class TaskTestCase(APITestCase):
             "status": "open",
             "tag": "purchase",
             "priority": 1,
-            "notes": "а каво писать"
+            "notes": "а каво писать",
         }
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -83,10 +81,7 @@ class TaskTestCase(APITestCase):
 
     def test_users_login(self):
         url = reverse("users:login")
-        data = {
-            "email": "admin@sky.pro",
-            "password": 123
-        }
+        data = {"email": "admin@sky.pro", "password": 123}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 

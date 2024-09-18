@@ -3,8 +3,6 @@ from django.core.validators import EmailValidator
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
-import tasker.models
-
 NULLABLE = {"null": True, "blank": True}
 
 

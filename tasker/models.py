@@ -6,9 +6,7 @@ from users.models import User
 NULLABLE = {"null": True, "blank": True}
 
 
-@pghistory.track(
-    exclude=["executors", "responsible_manager"]
-)
+@pghistory.track(exclude=["executors", "responsible_manager"])
 class Task(models.Model):
     """
     Модель Задача
@@ -26,6 +24,7 @@ class Task(models.Model):
         - notes: Примечание
         - updated_at: Дата обновления
     """
+
     TAG_CHOICES = [
         ("purchase", "Закупка"),
         ("spare parts", "Запчасти"),
@@ -45,10 +44,10 @@ class Task(models.Model):
 
     name = models.CharField(max_length=100)
     tag = models.CharField(max_length=20, choices=TAG_CHOICES, **NULLABLE)
-    parent_task = models.ForeignKey(
-        "self", on_delete=models.CASCADE, **NULLABLE
+    parent_task = models.ForeignKey("self", on_delete=models.CASCADE, **NULLABLE)
+    executors = models.ManyToManyField(
+        to="users.User", verbose_name="исполнители", related_name="my_tasks", blank=True
     )
-    executors = models.ManyToManyField(to="users.User", verbose_name="исполнители", related_name="my_tasks", blank=True)
     deadline = models.DateTimeField(**NULLABLE)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     responsible_manager = models.ForeignKey(

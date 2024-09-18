@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from rest_framework.permissions import IsAdminUser
 
-import tasker
 from users.models import User
 
 

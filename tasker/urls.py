@@ -1,8 +1,7 @@
 from django.urls import path
-
-from tasker.apps import TaskerConfig
 from rest_framework.routers import SimpleRouter
 
+from tasker.apps import TaskerConfig
 from tasker.views import TaskerViewSet, PublicTaskerListAPIView, \
     FreeImportantTaskerListAPIView, ImportantTasksListAPIView
 
