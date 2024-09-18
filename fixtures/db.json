@@ -1,0 +1,610 @@
+[
+{
+    "model": "users.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$s8dVETFt7ZpfwuAfKXK9YH$ajotobFSe0MMaFUw/bVcWEWkqJsi1epzRjMj+dmSYRg=",
+        "last_login": "2024-09-13T11:34:46",
+        "is_superuser": true,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-11T18:58:36",
+        "first_name": "Алексей",
+        "last_name": "Алексуткин",
+        "patronymic": null,
+        "position": "SRE",
+        "birthday": null,
+        "email": "admin@sky.pro",
+        "phone": null,
+        "avatar": "",
+        "tg_chat_id": null,
+        "groups": [],
+        "user_permissions": [],
+        "tasks": []
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "123",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-13T17:11:29",
+        "first_name": "Алексей",
+        "last_name": "Алексуткин",
+        "patronymic": "Сергеевич",
+        "position": "Manager",
+        "birthday": null,
+        "email": "Alexman-94@inbox.ru",
+        "phone": "+79215611843",
+        "avatar": "",
+        "tg_chat_id": null,
+        "groups": [],
+        "user_permissions": [],
+        "tasks": []
+    }
+},
+{
+    "model": "users.user",
+    "fields": {
+        "password": "123",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-09-13T17:12:31",
+        "first_name": "Алексей",
+        "last_name": "Алексуткин",
+        "patronymic": "Сергеевич",
+        "position": "SRE",
+        "birthday": null,
+        "email": "Alexman-94@mail.ru",
+        "phone": "+79215611843",
+        "avatar": "",
+        "tg_chat_id": null,
+        "groups": [],
+        "user_permissions": [],
+        "tasks": [
+            4,
+            3,
+            5,
+            2
+        ]
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 1,
+    "fields": {
+        "pgh_created_at": "2024-09-13T11:36:28.020",
+        "pgh_label": "insert",
+        "pgh_obj": 2,
+        "pgh_context": null,
+        "id": 2,
+        "name": "Обслужить компрессор",
+        "tag": "service",
+        "parent_task": null,
+        "deadline": "2024-09-13T19:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "Ну сделай там че-нить)))",
+        "updated_at": "2024-09-13T11:36:28.021"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 2,
+    "fields": {
+        "pgh_created_at": "2024-09-13T11:37:38.012",
+        "pgh_label": "insert",
+        "pgh_obj": 3,
+        "pgh_context": null,
+        "id": 3,
+        "name": "Купить масло",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-14T00:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "дайте деняк",
+        "updated_at": "2024-09-13T11:37:38.014"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 3,
+    "fields": {
+        "pgh_created_at": "2024-09-13T16:33:46.892",
+        "pgh_label": "insert",
+        "pgh_obj": 4,
+        "pgh_context": null,
+        "id": 4,
+        "name": "Абоба",
+        "tag": "purchase",
+        "parent_task": null,
+        "deadline": "2024-09-13T12:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-13T16:33:46.893"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 4,
+    "fields": {
+        "pgh_created_at": "2024-09-13T16:34:07.439",
+        "pgh_label": "update",
+        "pgh_obj": 4,
+        "pgh_context": null,
+        "id": 4,
+        "name": "Абоба",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-13T12:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-13T16:34:07.442"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 5,
+    "fields": {
+        "pgh_created_at": "2024-09-13T17:27:47.370",
+        "pgh_label": "insert",
+        "pgh_obj": 5,
+        "pgh_context": null,
+        "id": 5,
+        "name": "Какать",
+        "tag": "education",
+        "parent_task": 2,
+        "deadline": "2024-09-13T17:27:44",
+        "status": "open",
+        "responsible_manager": null,
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-13T17:27:47.373"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 6,
+    "fields": {
+        "pgh_created_at": "2024-09-16T12:30:04.170",
+        "pgh_label": "update",
+        "pgh_obj": 2,
+        "pgh_context": null,
+        "id": 2,
+        "name": "Обслужить компрессор",
+        "tag": "service",
+        "parent_task": null,
+        "deadline": "2024-09-13T19:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "Ну сделай там че-нить)))",
+        "updated_at": "2024-09-16T12:30:04.176"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 7,
+    "fields": {
+        "pgh_created_at": "2024-09-16T12:30:11.237",
+        "pgh_label": "update",
+        "pgh_obj": 3,
+        "pgh_context": null,
+        "id": 3,
+        "name": "Купить масло",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-14T00:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "дайте деняк",
+        "updated_at": "2024-09-16T12:30:11.242"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 8,
+    "fields": {
+        "pgh_created_at": "2024-09-16T12:30:18.403",
+        "pgh_label": "update",
+        "pgh_obj": 4,
+        "pgh_context": null,
+        "id": 4,
+        "name": "Абоба",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-13T12:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-16T12:30:18.408"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 9,
+    "fields": {
+        "pgh_created_at": "2024-09-16T12:30:23.462",
+        "pgh_label": "update",
+        "pgh_obj": 5,
+        "pgh_context": null,
+        "id": 5,
+        "name": "Какать",
+        "tag": "education",
+        "parent_task": 2,
+        "deadline": "2024-09-13T17:27:44",
+        "status": "open",
+        "responsible_manager": null,
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-16T12:30:23.466"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 10,
+    "fields": {
+        "pgh_created_at": "2024-09-16T12:30:54.279",
+        "pgh_label": "update",
+        "pgh_obj": 5,
+        "pgh_context": null,
+        "id": 5,
+        "name": "Какать",
+        "tag": "education",
+        "parent_task": 2,
+        "deadline": "2024-09-13T17:27:44",
+        "status": "open",
+        "responsible_manager": null,
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-16T12:30:54.281"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 11,
+    "fields": {
+        "pgh_created_at": "2024-09-16T14:10:32.972",
+        "pgh_label": "update",
+        "pgh_obj": 3,
+        "pgh_context": null,
+        "id": 3,
+        "name": "Купить масло",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-14T00:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "дайте деняк",
+        "updated_at": "2024-09-16T14:10:32.985"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 12,
+    "fields": {
+        "pgh_created_at": "2024-09-16T16:53:24.205",
+        "pgh_label": "update",
+        "pgh_obj": 5,
+        "pgh_context": null,
+        "id": 5,
+        "name": "Заливать масло",
+        "tag": "education",
+        "parent_task": 2,
+        "deadline": "2024-09-13T17:27:44",
+        "status": "open",
+        "responsible_manager": null,
+        "priority": 3,
+        "is_active": false,
+        "notes": "получить сертификацию",
+        "updated_at": "2024-09-16T16:53:24.212"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 13,
+    "fields": {
+        "pgh_created_at": "2024-09-16T17:00:27.429",
+        "pgh_label": "update",
+        "pgh_obj": 2,
+        "pgh_context": null,
+        "id": 2,
+        "name": "Обслужить компрессор",
+        "tag": "service",
+        "parent_task": null,
+        "deadline": "2024-09-13T19:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "Ну сделай там что-нибудь",
+        "updated_at": "2024-09-16T17:00:27.428"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 14,
+    "fields": {
+        "pgh_created_at": "2024-09-17T15:02:24.798",
+        "pgh_label": "insert",
+        "pgh_obj": 6,
+        "pgh_context": null,
+        "id": 6,
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": "2026-09-03T15:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:02:24.797"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 15,
+    "fields": {
+        "pgh_created_at": "2024-09-17T15:02:24.803",
+        "pgh_label": "update",
+        "pgh_obj": 6,
+        "pgh_context": null,
+        "id": 6,
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": "2026-09-03T15:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:02:24.802"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 16,
+    "fields": {
+        "pgh_created_at": "2024-09-17T15:35:46.500",
+        "pgh_label": "insert",
+        "pgh_obj": 7,
+        "pgh_context": null,
+        "id": 7,
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": "2026-09-03T15:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:35:46.499"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 17,
+    "fields": {
+        "pgh_created_at": "2024-09-17T15:35:46.504",
+        "pgh_label": "update",
+        "pgh_obj": 7,
+        "pgh_context": null,
+        "id": 7,
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": "2026-09-03T15:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:35:46.503"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 18,
+    "fields": {
+        "pgh_created_at": "2024-09-17T15:47:42.479",
+        "pgh_label": "insert",
+        "pgh_obj": 8,
+        "pgh_context": null,
+        "id": 8,
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": null,
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:47:42.478"
+    }
+},
+{
+    "model": "tasker.taskevent",
+    "pk": 19,
+    "fields": {
+        "pgh_created_at": "2024-09-17T15:47:42.483",
+        "pgh_label": "update",
+        "pgh_obj": 8,
+        "pgh_context": null,
+        "id": 8,
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": null,
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:47:42.482"
+    }
+},
+{
+    "model": "tasker.task",
+    "pk": 2,
+    "fields": {
+        "name": "Обслужить компрессор",
+        "tag": "service",
+        "parent_task": null,
+        "deadline": "2024-09-13T19:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "Ну сделай там что-нибудь",
+        "updated_at": "2024-09-16T17:00:27.428",
+        "executors": [
+            [
+                "Alexman-94@mail.ru"
+            ]
+        ]
+    }
+},
+{
+    "model": "tasker.task",
+    "pk": 3,
+    "fields": {
+        "name": "Купить масло",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-14T00:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "дайте деняк",
+        "updated_at": "2024-09-16T14:10:32.985",
+        "executors": [
+            [
+                "Alexman-94@mail.ru"
+            ]
+        ]
+    }
+},
+{
+    "model": "tasker.task",
+    "pk": 4,
+    "fields": {
+        "name": "Абоба",
+        "tag": "purchase",
+        "parent_task": 2,
+        "deadline": "2024-09-13T12:00:00",
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 3,
+        "is_active": false,
+        "notes": "",
+        "updated_at": "2024-09-16T12:30:18.408",
+        "executors": [
+            [
+                "Alexman-94@mail.ru"
+            ]
+        ]
+    }
+},
+{
+    "model": "tasker.task",
+    "pk": 5,
+    "fields": {
+        "name": "Заливать масло",
+        "tag": "education",
+        "parent_task": 2,
+        "deadline": "2024-09-13T17:27:44",
+        "status": "open",
+        "responsible_manager": null,
+        "priority": 3,
+        "is_active": false,
+        "notes": "получить сертификацию",
+        "updated_at": "2024-09-16T16:53:24.212",
+        "executors": []
+    }
+},
+{
+    "model": "tasker.task",
+    "pk": 8,
+    "fields": {
+        "name": "Задоджить",
+        "tag": null,
+        "parent_task": null,
+        "deadline": null,
+        "status": "open",
+        "responsible_manager": [
+            "admin@sky.pro"
+        ],
+        "priority": 1,
+        "is_active": false,
+        "notes": "а каво писать",
+        "updated_at": "2024-09-17T15:47:42.482",
+        "executors": []
+    }
+}
+]

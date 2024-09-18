@@ -32,11 +32,13 @@ services:
      # Связывание тома с директорией в контейнере для сохранения данных postgres
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
+      - ./fixtures/drf.sql:/docker-entrypoint-initdb.d/drf.sql
     healthcheck:
       test: [ "CMD-SHELL","-c","pg_isready -U $POSTGRES_USER" ]
       interval: 10s
       retries: 5
       timeout: 5s
+    command: bash -c "psql -U postgres -d postgres < /backup/drf.sql"
 
 #  redis:
 #    image: redis:latest
