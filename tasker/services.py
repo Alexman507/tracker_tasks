@@ -4,7 +4,7 @@ from tasker.models import Task
 from users.models import User
 
 
-def free_executor_get_queryset(self):
+def free_executor_get_queryset():
     user_min_task = (
         User.objects.all()
         .annotate(task_count=Count("tasks"))

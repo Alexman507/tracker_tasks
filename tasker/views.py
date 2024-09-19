@@ -55,7 +55,7 @@ class FreeExecutorsAPIView(generics.ListAPIView):
     serializer_class = FreeExecutorsListSerializer
 
     def get_queryset(self):
-        queryset = tasker.services.free_executor_get_queryset(self.request.user)
+        queryset = tasker.services.free_executor_get_queryset()
 
         return queryset
 
