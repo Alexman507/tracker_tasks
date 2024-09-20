@@ -20,8 +20,10 @@ class TaskTestCase(APITestCase):
         )
         self.client.force_authenticate(user=self.user)
 
-    def test_login(self):
-        pass
+    def test_str_representation(self):
+        # Тест, проверяющий строковое представление модели.
+        self.assertEqual(str(self.task), "Задоджить")
+        self.assertEqual(str(self.user), "test@osnova-3d.ru")
 
     def test_task_retrieve(self):
         url = reverse("tasker:tasker-detail", args=(self.task.pk,))
