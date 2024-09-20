@@ -25,6 +25,9 @@ class TaskTestCase(APITestCase):
         self.assertEqual(str(self.task), "Задоджить")
         self.assertEqual(str(self.user), "test@osnova-3d.ru")
 
+    def test_func_models(self):
+        pass
+
     def test_task_retrieve(self):
         url = reverse("tasker:tasker-detail", args=(self.task.pk,))
         response = self.client.get(url)
