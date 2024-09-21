@@ -32,7 +32,7 @@ class User(AbstractUser):
                               validators=[
                                   EmailValidator(message='При регистрации допускается только домен osnova-3d',
                                                  allowlist='osnova-3d.ru')])
-    phone = PhoneNumberField(**NULLABLE)
+    phone = PhoneNumberField(**NULLABLE, verbose_name="Телефон")
     avatar = models.ImageField(
         upload_to="users/avatars", verbose_name="Аватар", **NULLABLE
     )
@@ -40,7 +40,7 @@ class User(AbstractUser):
     tg_chat_id = models.CharField(
         max_length=50, verbose_name="Телеграм chat-id", **NULLABLE
     )
-    tasks = models.ManyToManyField(to="tasker.Task", related_name="workers", blank=True)
+    tasks = models.ManyToManyField(to="tasker.Task", related_name="workers", blank=True, verbose_name="Задачи")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

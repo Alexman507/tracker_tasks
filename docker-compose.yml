@@ -33,7 +33,6 @@ services:
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
       - ./fixtures:/docker-entrypoint-initdb.d
-#    command:
     healthcheck:
       test: [ "CMD-SHELL","-c","pg_isready -U $POSTGRES_USER"]
       interval: 10s

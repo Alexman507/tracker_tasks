@@ -42,14 +42,14 @@ class Task(models.Model):
         ("delayed", "Задержано"),
     ]
 
-    name = models.CharField(max_length=100)
-    tag = models.CharField(max_length=20, choices=TAG_CHOICES, **NULLABLE)
+    name = models.CharField(max_length=100, verbose_name="наименование")
+    tag = models.CharField(max_length=20, choices=TAG_CHOICES, **NULLABLE, verbose_name="тэг")
     parent_task = models.ForeignKey("self", on_delete=models.CASCADE, **NULLABLE)
     executors = models.ManyToManyField(
         to="users.User", verbose_name="исполнители", related_name="my_tasks", blank=True
     )
-    deadline = models.DateTimeField(**NULLABLE)
-    status = models.CharField(max_length=15, choices=STATUS_CHOICES)
+    deadline = models.DateTimeField(**NULLABLE, verbose_name="срок")
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES, verbose_name="статус")
     responsible_manager = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
@@ -57,10 +57,10 @@ class Task(models.Model):
         verbose_name="Ответственный за выполнение",
         related_name="responsibles"
     )
-    priority = models.PositiveSmallIntegerField(default=3)
-    is_active = models.BooleanField(default=False)
-    notes = models.TextField(**NULLABLE)
-    updated_at = models.DateTimeField(auto_now=True)
+    priority = models.PositiveSmallIntegerField(default=3, verbose_name="приоритет")
+    is_active = models.BooleanField(default=False, verbose_name="активная")
+    notes = models.TextField(**NULLABLE, verbose_name="примечание")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="дата обновления")
 
     def __str__(self):
         return self.name

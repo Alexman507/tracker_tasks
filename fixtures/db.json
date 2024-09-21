@@ -107,7 +107,7 @@
     "model": "tasker.task",
     "pk": 4,
     "fields": {
-      "name": "Абоба",
+      "name": "Test",
       "tag": "purchase",
       "parent_task": 2,
       "deadline": "2024-09-13T12:00:00",

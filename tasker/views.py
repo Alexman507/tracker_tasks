@@ -31,9 +31,11 @@ class TaskerViewSet(viewsets.ModelViewSet):
 
 
 class PublicTaskerListAPIView(generics.ListAPIView):
+    """Запрашивает из БД все публичные задачи"""
     serializer_class = TaskSerializer
     queryset = Task.objects.filter(priority=1)
     pagination_class = TaskPaginator
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return Task.objects.filter(executors=self.request.user.pk).order_by("id")
