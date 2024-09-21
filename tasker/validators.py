@@ -1,3 +1,9 @@
+# Реализовать валидацию данных входящих запросов
+from datetime import datetime
+
+from rest_framework.exceptions import ValidationError
+
+
 # from datetime import timedelta
 #
 # from rest_framework.serializers import ValidationError
@@ -30,15 +36,15 @@
 #                 )
 #
 #
-# class DurationTimeValidator:
-#     def __init__(self, field):
-#         self.field = field
-#
-#     def __call__(self, value):
-#         tmp_val = dict(value).get(self.field)
-#         print(tmp_val)
-#         if tmp_val is not None and tmp_val > timedelta(seconds=120):
-#             raise ValidationError("Время выполнения должно быть не больше 120 секунд")
+class DeadlineDateValidator:
+    def __init__(self, field):
+        self.field = field
+
+    def __call__(self, value):
+        tmp_val = dict(value).get(self.field)
+        print(tmp_val)
+        if tmp_val is not None and tmp_val < datetime.now():
+            raise ValidationError("Дедлайн не может быть задним числом")
 #
 #
 # class PleasantHabitValidator:

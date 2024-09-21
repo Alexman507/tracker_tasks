@@ -1,0 +1,79 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$s8dVETFt7ZpfwuAfKXK9YH$ajotobFSe0MMaFUw/bVcWEWkqJsi1epzRjMj+dmSYRg=",
+      "last_login": "2024-09-13T11:34:46",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-09-11T18:58:36",
+      "first_name": "Алексей",
+      "last_name": "Алексуткин",
+      "patronymic": null,
+      "position": "SRE",
+      "birthday": null,
+      "email": "admin@sky.pro",
+      "phone": null,
+      "avatar": "",
+      "tg_chat_id": null,
+      "groups": [],
+      "user_permissions": [],
+      "tasks": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "123",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-09-13T17:11:29",
+      "first_name": "Алексей",
+      "last_name": "Алексуткин",
+      "patronymic": "Сергеевич",
+      "position": "Manager",
+      "birthday": null,
+      "email": "Alexman-94@inbox.ru",
+      "phone": "+79215611843",
+      "avatar": "",
+      "tg_chat_id": null,
+      "groups": [],
+      "user_permissions": [],
+      "tasks": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "123",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-09-13T17:12:31",
+      "first_name": "Алексей",
+      "last_name": "Алексуткин",
+      "patronymic": "Сергеевич",
+      "position": "SRE",
+      "birthday": null,
+      "email": "Alexman-94@mail.ru",
+      "phone": "+79215611843",
+      "avatar": "",
+      "tg_chat_id": null,
+      "groups": [],
+      "user_permissions": [],
+      "tasks": [
+        4,
+        3,
+        5,
+        2
+      ]
+    }
+  }
+]
