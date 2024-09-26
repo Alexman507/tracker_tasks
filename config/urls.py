@@ -37,6 +37,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("tasker/", include("tasker.urls", namespace="tasker")),
     path("users/", include("users.urls", namespace="users")),
+    path("frontend/", include("frontend.urls", namespace="frontend")),
     path(
         "swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),
